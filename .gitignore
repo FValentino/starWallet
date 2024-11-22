@@ -1,0 +1,34 @@
+ PYTHON
+*.pyc
+.env
+.env_test
+/entorno/
+/env/
+
+# DJANGO
+*.log
+*.pot
+*.pyo
+*.db
+*.conf
+*.service
+__pycache__/
+db.sqlite3
+
+
+
+
+# Medias
+src/media/avatars/
+
+# Environment files
+pydock/.envz
+
+# VISUAL STUDIO cODE
+.vscode
+
+# PYCHARM
+.idea/
+
+# static files
+ staticfiles/
