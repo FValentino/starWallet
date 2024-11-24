@@ -1,0 +1,9 @@
+<form method="POST">
+    <div class="card-body">
+        {% csrf_token %}
+
+        {% include 'includes/forms.html' with form=formUsuario %}
+    </div>
+
+    <button type="submit" > Guardar</button>
+</form>

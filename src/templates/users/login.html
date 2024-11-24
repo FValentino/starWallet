@@ -1,0 +1,11 @@
+<form  method="post">{% csrf_token %}
+    <div class="input-group mb-3"> 
+        <input type="text" name="username" class="form-control" placeholder="Nombre de Usuario" 
+        required id="id_username">
+    </div>
+    <div class="input-group mb-3"> 
+        <input type="password" name="password" class="form-control" placeholder="Password" 
+        required id="id_password">
+    </div> 
+    <button type="submit" >Autenticar</button>
+</form>
