@@ -10,10 +10,10 @@ def register(request):
     message = ''
 
     if request.method == 'POST':
-        form = FormUser(request.POST)
+        form = FormUser(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            print ('formulario cargado')
+            return redirect('home')
         else:
             message = "No se pudo guardar de forma correcta el formulario"
             print (message)
@@ -40,9 +40,7 @@ def login(request):
         if usuario:
             salio_mal = False
             login_django(request, usuario)
-            return redirect('users:register')
-        else:
-            print("autenticacion mal")
+            return redirect('home')
 
     ctx = {
         "se_autentico": se_autentico,

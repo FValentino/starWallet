@@ -7,7 +7,9 @@
     </head>
     <body>
         <h1>Nombre del usuario: {{user.first_name}}</h1>
-        <h2>Saldo del usuario: </h2>
+        <h2>Saldo del usuario: {{user.balance}}</h2>
+
+        <p> <a href="{% url 'users:profile' %}">ver perfil</a> </p> 
 
         <p> <a href="{% url 'users:login' %}">iniciar sesion</a> </p> 
 

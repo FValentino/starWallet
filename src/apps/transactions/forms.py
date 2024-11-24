@@ -8,4 +8,3 @@ class DepositForm(forms.ModelForm):
     class Meta:
         model = Transaction
         fields = ['amount']
-        

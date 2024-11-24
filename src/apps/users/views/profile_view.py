@@ -1,12 +1,12 @@
 from django.shortcuts import render
 
-def profile(request):
-    template_name = 'users/profile.html'
+def view_profile(request):
+    template_name = 'profile/profile.html'
 
     return render(request, template_name, {})
 
 
-def favorites(request):
-    template_name = 'users/favorites.html'
+def update_profile(request):
+    template_name = 'profile/update.html'
 
     return render(request, template_name, {})
