@@ -3,8 +3,8 @@
 Este proyecto es una aplicación web desarrollada con Django que simula una billetera virtual.
 Permite a los usuarios ingresar dinero en su cuenta, realizar transacciones con otros usuarios,
 tener el control de gastos a traves de un historial de transacciones. 
-Ademas podran agregar una foto de perfil, de esta forma podran hacerlo mas facil de reconocer 
-para cuando se realicen transacciones.
+Ademas podran agregar una foto de perfil, de esta forma facilitaran el reconocimiento de usuarios
+a la hora de realizar transacciones.
 
 ---------------------------------------------
 
