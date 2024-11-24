@@ -1,0 +1,11 @@
+<form method="POST">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="{{ form.amount.id_for_label }}">{{ form.amount.label }}</label>
+        {{ form.amount }}
+        
+    </div>
+    
+    <button type="submit" class="btn btn-success">Realizar Depósito</button>
+</form>

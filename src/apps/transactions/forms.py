@@ -1,12 +1,11 @@
 from django import forms
-from .models import Transaccion
+from .models import Transaction
 
-class TransaccionForm(forms.ModelForm):
+class DepositForm(forms.ModelForm):
+
+    amount = forms.DecimalField(label='Ingrese el monto $', widget=forms.NumberInput(attrs={'min':'1', 'step':'0.01'}))
+    
     class Meta:
-        model = Transaccion
-        fields = ['monto', 'tipo', 'descripcion']
-        widgets = {
-            'monto': forms.NumberInput(attrs={'class': 'form-control'}),
-            'tipo': forms.Select(attrs={'class': 'form-control'}),
-            'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
-        }
+        model = Transaction
+        fields = ['amount']
+        

@@ -11,6 +11,8 @@
 
         <p> <a href="{% url 'users:login' %}">iniciar sesion</a> </p> 
 
+        <p> <a href="{% url 'transactions:deposito' %}">depositar</a> </p> 
+
         <form method="POST" action="{% url 'users:logout' %}">
             {% csrf_token %}
             <button type="submit">Cerrar sesión</button>
