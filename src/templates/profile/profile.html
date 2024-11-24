@@ -1,6 +1,10 @@
+<p> <a href="{% url 'home' %}"> volver</a></p>
+
 <div>
     <img src="{{ user.perfil_pic.url }}" alt="">
 </div>
 
 
-<p> {%user.first_name} </p>
+<p> {{user.first_name}} </p>
+
+<p> <a href="{% url 'users:update' %}"> editar perfil</a></p>

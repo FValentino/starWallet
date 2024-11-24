@@ -37,3 +37,20 @@ class FormUser(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+
+class UpdateUser(forms.ModelForm):
+
+    first_name = forms.CharField(label="Nombre", widget=forms.TextInput(attrs={'placeholder': 'Ingrese su nombre'}))
+    last_name = forms.CharField(label="Apelido", widget=forms.TextInput(attrs={'placeholder': 'Ingrese su apellido'}))
+    email = forms.CharField(label="Email", widget=forms.TextInput(attrs={'placeholder': 'Ingrese su correo electronico'}))
+    tel = forms.CharField(label="Telefono", widget=forms.TextInput(attrs={'placeholder': 'Ingrese su telefono'}))
+    birthdate = forms.CharField(label="fecha de nacimiento", widget=forms.DateInput(attrs={'placeholder': 'AAAA-MM-DD', 'type': 'date'}))
+    username = forms.CharField(label="Nombre de usuario", widget=forms.TextInput(attrs={'placeholder': 'Ingrese un nombre de usuario'}))
+    perfil_pic = forms.ImageField(label="Foto de perfil", required=False)
+
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'email', 'tel', 'birthdate', 'username', 'perfil_pic']
+    

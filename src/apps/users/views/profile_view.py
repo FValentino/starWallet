@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from ..forms import UpdateUser
 
 def view_profile(request):
     template_name = 'profile/profile.html'
@@ -7,6 +8,16 @@ def view_profile(request):
 
 
 def update_profile(request):
-    template_name = 'profile/update.html'
+    template_name = 'profile/update_profile.html'
+    
+    user = request.user
 
-    return render(request, template_name, {})
+    form = UpdateUser(instance=user)
+
+    if request.method == 'POST':
+        form = UpdateUser(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('users:profile')
+
+    return render(request, template_name, {'form': form})
