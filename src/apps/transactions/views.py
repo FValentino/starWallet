@@ -24,6 +24,7 @@ def create_deposit(request):
     return render(request, template_name, {'form': form})
 
 def create_transfer(request):
+    
     template_name = 'transactions/transfer.html'
 
     form = forms.TransferForm()
@@ -36,8 +37,7 @@ def create_transfer(request):
             recipient = transfer.recipient
 
             transfer.user = request.user  
-            transfer.transaction_type = 'transferencia' 
-            transfer.reason = 'otro'  
+            transfer.transaction_type = 'transferencia'
             transfer.save()                  
             
 
@@ -45,6 +45,21 @@ def create_transfer(request):
             recipient.balance += transfer.amount
             user.save()
             recipient.save()
+
+            return redirect('home')
+
+    return render(request, template_name, {'form': form})
+
+def create_reason(request):
+    template_name = 'transactions/reason/reason.html'
+
+    form = forms.ReasonForm()
+
+    if request.method == 'POST':
+        form = forms.ReasonForm(request.POST)
+        if form.is_valid():
+            deposit = form.save(commit=False) 
+            deposit.save()
 
             return redirect('home')
 

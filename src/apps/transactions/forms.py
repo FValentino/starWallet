@@ -1,5 +1,5 @@
 from django import forms
-from .models import Transaction
+from .models import Transaction, Reason
 
 from ..users.models import CustomUser
 
@@ -23,8 +23,20 @@ class TransferForm(forms.ModelForm):
     amount = forms.DecimalField(label="Monto a transferir", max_digits=10, decimal_places=2, 
         widget=forms.NumberInput(attrs={'class': 'form-control', 'min': '1', 'step':'0.01'}))
     
-    reason = forms.CharField( label="Motivo (opcional)",  required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    reason = forms.ModelChoiceField(
+        queryset=Reason.objects.all(),
+        label="Motivo",
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
 
     class Meta:
         model = Transaction
         fields = ['recipient','amount', 'reason']
+
+
+class ReasonForm(forms.ModelForm):
+    reason = forms.CharField(label='Ingrese el motivo nuevo', widget=forms.TextInput())
+    
+    class Meta:
+        model = Reason
+        fields = ['reason']
