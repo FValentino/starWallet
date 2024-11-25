@@ -22,3 +22,30 @@ def create_deposit(request):
             return redirect('home')
 
     return render(request, template_name, {'form': form})
+
+def create_transfer(request):
+    template_name = 'transactions/transfer.html'
+
+    form = forms.TransferForm()
+
+    if request.method == 'POST':
+        form = forms.TransferForm(request.POST)
+        user = request.user
+        if form.is_valid():
+            transfer = form.save(commit=False) 
+            recipient = transfer.recipient
+
+            transfer.user = request.user  
+            transfer.transaction_type = 'transferencia' 
+            transfer.reason = 'otro'  
+            transfer.save()                  
+            
+
+            user.balance -= transfer.amount
+            recipient.balance += transfer.amount
+            user.save()
+            recipient.save()
+
+            return redirect('home')
+
+    return render(request, template_name, {'form': form})

@@ -44,6 +44,8 @@ def login(request):
             salio_mal = False
             login_django(request, usuario)
             return redirect('home')
+        else:
+            print ('no funciona')
 
     ctx = {
         "se_autentico": se_autentico,
