@@ -1,15 +1,18 @@
 from django.http import Http404
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
+
 from ..forms import UpdateUser
 
 from ..models import CustomUser
 
+@login_required
 def view_profile(request):
     template_name = 'profile/profile.html'
 
     return render(request, template_name, {})
 
-
+@login_required
 def update_profile(request):
     template_name = 'profile/update_profile.html'
     
@@ -25,7 +28,7 @@ def update_profile(request):
 
     return render(request, template_name, {'form': form})
 
-
+@login_required
 def edit_user(request, user_id):
     try:
         user = CustomUser.objects.get(id=user_id)

@@ -1,0 +1,34 @@
+<h1>Historial de Transacciones</h1>
+
+{% if transactions %}
+<table>
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Monto</th>
+            <th>Destinatario</th>
+            <th>Motivo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.date|date:"d/m/Y H:i" }}</td>
+                <td>{{ transaction.transaction_type }}</td>
+                <td>${{ transaction.amount }}</td>
+                <td>
+                    {% if transaction.recipient %}
+                        {{ transaction.recipient.username }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>{{ transaction.reason }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>No tienes transacciones registradas.</p>
+{% endif %}

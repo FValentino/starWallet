@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from . import forms
 
+@login_required 
 def create_deposit(request):
     template_name = 'transactions/deposit.html'
 
@@ -23,6 +25,7 @@ def create_deposit(request):
 
     return render(request, template_name, {'form': form})
 
+@login_required 
 def create_transfer(request):
     
     template_name = 'transactions/transfer.html'
@@ -50,6 +53,7 @@ def create_transfer(request):
 
     return render(request, template_name, {'form': form})
 
+@login_required 
 def create_reason(request):
     template_name = 'transactions/reason/reason.html'
 

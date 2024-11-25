@@ -1,10 +1,11 @@
-from pyexpat.errors import messages
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login as login_django, authenticate
+from django.contrib.auth.decorators import login_required
 
 from ..forms import FormUser
 from ..models import CustomUser
+
 
 def register(request):
     template_name = './users/register.html'
@@ -27,6 +28,7 @@ def register(request):
     }
 
     return render(request, template_name, ctx)
+
 
 def login(request):
     template_name = 'users/login.html'
@@ -54,6 +56,7 @@ def login(request):
     }
     return render(request, template_name, ctx)
 
+@login_required 
 def user_list(request):
     template_name='users/user_list.html'
 
@@ -61,6 +64,7 @@ def user_list(request):
 
     return render(request, template_name, {'users':users})
 
+@login_required 
 def desactivate_user(request, user_id):
     try:
         user = CustomUser.objects.get(id=user_id)

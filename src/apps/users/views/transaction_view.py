@@ -1,6 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from ...transactions.models import Transaction
 
-def record(request):
-    template_name = 'users/record.html'
-
-    return render(request, template_name, {})
+@login_required
+def transaction_history(request):
+    template_name = 'transactions/history.html'
+    
+    transactions = Transaction.objects.filter(user=request.user).order_by('-date')
+    
+    return render(request, template_name, {'transactions': transactions})

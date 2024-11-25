@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as views_django
-from .views import auth_view, profile_view
+from .views import auth_view, profile_view, transaction_view
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -19,6 +19,9 @@ urlpatterns=[
     path('perfil/', profile_view.view_profile, name='profile'),
     path('perfil/editar', profile_view.update_profile, name='update'),
     path('edit_user/<int:user_id>/', profile_view.edit_user, name='edit_user'),
+
+    #TRANSACTIONS
+    path('perfil/historial', transaction_view.transaction_history, name='historial'),
 
 ]
 
