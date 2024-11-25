@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect
+from pyexpat.errors import messages
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login as login_django, authenticate
 
 from ..forms import FormUser
+from ..models import CustomUser
 
 def register(request):
     template_name = './users/register.html'
@@ -48,3 +51,22 @@ def login(request):
         "username": username
     }
     return render(request, template_name, ctx)
+
+def user_list(request):
+    template_name='users/user_list.html'
+
+    users = CustomUser.objects.all()
+
+    return render(request, template_name, {'users':users})
+
+def desactivate_user(request, user_id):
+    try:
+        user = CustomUser.objects.get(id=user_id)
+    except CustomUser.DoesNotExist:
+        raise Http404("El usuario no existe.")
+    
+    if user.is_active:
+        user.is_active = False
+        user.save()
+
+    return redirect('users:user_list')

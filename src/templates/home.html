@@ -11,9 +11,11 @@
 
         <p> <a href="{% url 'users:profile' %}">ver perfil</a> </p> 
 
-        <p> <a href="{% url 'users:login' %}">iniciar sesion</a> </p> 
+        <p> <a href="{% url 'users:user_list' %}">listar usuarios</a> </p> 
 
         <p> <a href="{% url 'transactions:deposito' %}">depositar</a> </p> 
+
+        <p> <a href="{% url 'users:login' %}">iniciar sesion</a> </p>
 
         <form method="POST" action="{% url 'users:logout' %}">
             {% csrf_token %}

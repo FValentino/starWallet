@@ -1,0 +1,28 @@
+<h2>Lista de Usuarios</h2>
+<table>
+<thead>
+    <tr>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Correo</th>
+    <th>Teléfono</th>
+    <th>Fecha de Nacimiento</th>
+    <th>Acciones</th>
+    </tr>
+</thead>
+<tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.tel }}</td>
+            <td>{{ user.birthdate }}</td>
+            <td>
+                <a href="{% url 'users:edit_user' user.id %}">Editar</a>
+                <a href="{% url 'users:desactivate_user' user.id %}">Desactivar</a>
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+</table>
