@@ -23,10 +23,14 @@
 
         <p> <a href="{% url 'users:login' %}">iniciar sesion</a> </p>
 
-        <form method="POST" action="{% url 'users:logout' %}">
-            {% csrf_token %}
-            <button type="submit">Cerrar sesión</button>
-        </form>
-    
+        {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'users:logout' %}">
+                {% csrf_token %}
+                <button type="submit">Cerrar sesión</button>
+            </form>
+        {% else %}
+            <p> <a href="{% url 'users:register' %}">registrarse</a> </p>
+        {% endif %}
+        
     </body>
 </html>
